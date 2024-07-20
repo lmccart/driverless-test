@@ -8,10 +8,10 @@ peer.on('open', function(id) {
 peer.on('connection', connection => {
   console.log('connection');
   conn = connection;
-  connected();
+  connected(conn);
 });
 
-function connected() {
+function connected(conn) {
   conn.on('open', () => {
     $('#updates').prepend(`Connected to ${conn.peer}<br>`);
 
@@ -42,7 +42,7 @@ $('#start').click(() => {
   $('#start').remove();
   speak('Hello', 0);
   conn = peer.connect('driverless-controller');
-  connected();
+  connected(conn);
   makeCall();
 });
 
